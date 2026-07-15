@@ -31,7 +31,7 @@
         <span class="hero-bubble">Бабайя!</span>
       </div>
 
-      <p class="eyebrow">Семейный экзамен · 22 слова</p>
+      <p class="eyebrow" id="question-count-label">Семейный экзамен · 23 слова</p>
       <h1 id="welcome-title">Кто тут главный<br><span>тиньдолог?</span></h1>
       <p class="lead">Переведите слова Тильды на взрослый. Большие кнопки, смешные ошибки и никакой контрольной тетради.</p>
 
@@ -47,7 +47,7 @@
 
     <section class="screen" id="quiz-screen" aria-labelledby="question-title">
       <div class="quiz-topline">
-        <span id="progress-text">1 из 22</span>
+        <span id="progress-text">1 из 23</span>
         <span class="score-pill"><span aria-hidden="true">★</span> <span id="score-text">0</span></span>
       </div>
       <div class="progress-track" aria-hidden="true"><span id="progress-bar"></span></div>
@@ -70,7 +70,7 @@
       <div class="result-burst" aria-hidden="true"><span id="result-emoji">🏆</span></div>
       <p class="eyebrow">Экзамен окончен!</p>
       <h2 id="result-title">Академик<br>тиньдологии</h2>
-      <p class="result-score"><strong id="final-score">0</strong><span>/22</span></p>
+      <p class="result-score"><strong id="final-score">0</strong><span id="final-total">/23</span></p>
       <p class="result-copy" id="result-copy"></p>
 
       <div class="result-actions">
@@ -109,6 +109,6 @@
 
   <canvas id="confetti" aria-hidden="true"></canvas>
   <script src="config.js"></script>
-  <script src="app.js?v=2"></script>
+  <script src="app.js?v=3"></script>
 </body>
 </html>

@@ -6,19 +6,20 @@
     { baby: "Дюдю", adult: "облиться", decoys: ["дудеть", "дуть", "индюк"] },
     { baby: "Афейка", adult: "собака", decoys: ["скамейка", "копейка", "индейка"] },
     { baby: "Кавейка", adult: "наклейка", decoys: ["скамейка", "копейка", "батарейка"] },
-    { baby: "Мяу", adult: "кот", decoys: ["мяч", "мята", "мясо"] },
-    { baby: "Биби", adult: "собака", decoys: ["бибика", "бигуди", "билет"] },
+    { baby: "Мяука", adult: "кот", decoys: ["муха", "майка", "мяукать"] },
+    { baby: "Биби", adult: "машина", decoys: ["бибика", "бигуди", "билет"] },
     { baby: "Флагака", adult: "флаг", decoys: ["фляга", "бумага", "лягушка"] },
     { baby: "Пизза", adult: "пицца", decoys: ["киса", "лиса", "виза"] },
     { baby: "Дём", adult: "дом", decoys: ["дым", "день", "гром"] },
     { baby: "Магак", adult: "гамак", decoys: ["маяк", "мак", "рюкзак"] },
     { baby: "Го-во-ва", adult: "голова", decoys: ["корова", "подкова", "сова"] },
-    { baby: "Бать", adult: "спать", decoys: ["брать", "дать", "встать"] },
     { baby: "Пипи", adult: "покупать", decoys: ["пить", "писать", "пищать"] },
     { baby: "Га", adult: "гадость", decoys: ["гавкать", "газ", "гаечка"] },
     { baby: "Кака", adult: "говно", decoys: ["каска", "кашка", "качели"] },
     { baby: "Папая", adult: "папа", decoys: ["папайя", "попугай", "бабайка"] },
     { baby: "Тиньда", adult: "Тильда", decoys: ["Линда", "Тина", "Дина"] },
+    { baby: "Деечка", adult: "девочка", decoys: ["дверочка", "дощечка", "овечка"] },
+    { baby: "Матик", adult: "мальчик", decoys: ["мячик", "маятник", "матрас"] },
     { baby: "Здись", adult: "здесь", decoys: ["свист", "кисть", "лист"] },
     { baby: "Ваванда", adult: "лаванда", decoys: ["веранда", "команда", "гирлянда"] },
     { baby: "Дайййй", adult: "большой", decoys: ["дальний", "длинный", "дай"] },
@@ -48,6 +49,18 @@
 
   const config = window.QUIZ_CONFIG || {};
   const $ = (id) => document.getElementById(id);
+
+  function pluralizeWords(count) {
+    const mod10 = count % 10;
+    const mod100 = count % 100;
+    if (mod10 === 1 && mod100 !== 11) return `${count} слово`;
+    if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return `${count} слова`;
+    return `${count} слов`;
+  }
+
+  $("question-count-label").textContent = `Семейный экзамен · ${pluralizeWords(WORDS.length)}`;
+  $("progress-text").textContent = `1 из ${WORDS.length}`;
+  $("final-total").textContent = `/${WORDS.length}`;
 
   function shuffle(items) {
     const copy = [...items];
