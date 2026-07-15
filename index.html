@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ff6b8a">
+  <meta name="description" content="Семейный квиз на знание слов Тильды">
+  <title>Кто тут главный тиньдолог?</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="sky-shape sky-shape--one" aria-hidden="true"></div>
+  <div class="sky-shape sky-shape--two" aria-hidden="true"></div>
+
+  <main class="app-shell" id="app">
+    <header class="brand" aria-label="Тиньдин словарик">
+      <span class="brand__mark" aria-hidden="true">Т</span>
+      <span>Тиньдин словарик</span>
+      <button class="icon-button" id="sound-toggle" type="button" aria-label="Выключить звуки" aria-pressed="true">♪</button>
+    </header>
+
+    <section class="screen screen--active" id="welcome-screen" aria-labelledby="welcome-title">
+      <div class="hero-doodle" aria-hidden="true">
+        <span class="doodle doodle--banana">🍌</span>
+        <span class="doodle doodle--cat">🐈</span>
+        <span class="doodle doodle--flag">🚩</span>
+        <span class="doodle doodle--star">✦</span>
+        <span class="hero-bubble">Бабайя!</span>
+      </div>
+
+      <p class="eyebrow">Семейный экзамен · 22 слова</p>
+      <h1 id="welcome-title">Кто тут главный<br><span>тиньдолог?</span></h1>
+      <p class="lead">Переведите слова Тильды на взрослый. Большие кнопки, смешные ошибки и никакой контрольной тетради.</p>
+
+      <form class="name-form" id="name-form">
+        <label for="player-name">Как вас зовут?</label>
+        <input id="player-name" name="name" type="text" maxlength="24" autocomplete="name" placeholder="Например, бабушка Лена" required>
+        <p class="field-hint" id="name-hint">Имя появится на семейном пьедестале</p>
+        <button class="primary-button" type="submit">Погнали! <span aria-hidden="true">→</span></button>
+      </form>
+
+      <button class="text-button" id="open-leaderboard" type="button">🏆 Посмотреть пьедестал</button>
+    </section>
+
+    <section class="screen" id="quiz-screen" aria-labelledby="question-title">
+      <div class="quiz-topline">
+        <span id="progress-text">1 из 22</span>
+        <span class="score-pill"><span aria-hidden="true">★</span> <span id="score-text">0</span></span>
+      </div>
+      <div class="progress-track" aria-hidden="true"><span id="progress-bar"></span></div>
+
+      <div class="mascot" id="mascot" aria-hidden="true">
+        <span class="mascot__ear mascot__ear--left"></span>
+        <span class="mascot__ear mascot__ear--right"></span>
+        <span class="mascot__face">•ᴗ•</span>
+      </div>
+      <p class="question-kicker">Что это значит?</p>
+      <h2 id="question-title" class="question-word">Бабайя</h2>
+      <p class="streak" id="streak-text" aria-live="polite"></p>
+
+      <div class="answers" id="answers" role="group" aria-label="Варианты ответа"></div>
+      <div class="feedback" id="feedback" role="status" aria-live="polite"></div>
+      <button class="primary-button primary-button--next" id="next-question" type="button" hidden>Дальше <span aria-hidden="true">→</span></button>
+    </section>
+
+    <section class="screen" id="result-screen" aria-labelledby="result-title">
+      <div class="result-burst" aria-hidden="true"><span id="result-emoji">🏆</span></div>
+      <p class="eyebrow">Экзамен окончен!</p>
+      <h2 id="result-title">Академик<br>тиньдологии</h2>
+      <p class="result-score"><strong id="final-score">0</strong><span>/22</span></p>
+      <p class="result-copy" id="result-copy"></p>
+
+      <div class="result-actions">
+        <button class="primary-button" id="share-result" type="button">Поделиться результатом</button>
+        <button class="secondary-button" id="show-mistakes" type="button" hidden>Разобрать промахи</button>
+      </div>
+
+      <div class="mistakes" id="mistakes" hidden></div>
+      <div class="save-status" id="save-status" role="status"></div>
+
+      <section class="leaderboard-card" aria-labelledby="leaderboard-title">
+        <div class="leaderboard-card__head">
+          <div>
+            <p class="eyebrow">Семейный зачёт</p>
+            <h3 id="leaderboard-title">Пьедестал</h3>
+          </div>
+          <button class="icon-button icon-button--refresh" id="refresh-leaderboard" type="button" aria-label="Обновить пьедестал">↻</button>
+        </div>
+        <ol class="leaderboard" id="leaderboard"></ol>
+        <p class="leaderboard-empty" id="leaderboard-empty">Здесь скоро появятся семейные чемпионы.</p>
+      </section>
+
+      <button class="text-button" id="play-again" type="button">Сыграть ещё раз</button>
+    </section>
+
+    <section class="screen" id="leaderboard-screen" aria-labelledby="standalone-leaderboard-title">
+      <button class="back-button" id="close-leaderboard" type="button">← Назад</button>
+      <p class="eyebrow">Семейный зачёт</p>
+      <h2 id="standalone-leaderboard-title">Пьедестал<br>тиньдологов</h2>
+      <p class="lead lead--small">Сначала считаем правильные ответы, при ничьей — кто справился быстрее.</p>
+      <ol class="leaderboard leaderboard--large" id="standalone-leaderboard"></ol>
+      <p class="leaderboard-empty" id="standalone-leaderboard-empty">Пока тихо. Станьте первым чемпионом!</p>
+      <button class="secondary-button" id="refresh-standalone" type="button">Обновить результаты</button>
+    </section>
+  </main>
+
+  <canvas id="confetti" aria-hidden="true"></canvas>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
